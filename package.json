@@ -11,9 +11,6 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "dependencies": {
-    
-  },
   "scripts": {
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\""
