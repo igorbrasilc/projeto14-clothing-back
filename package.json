@@ -11,7 +11,18 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
+<<<<<<< HEAD
+=======
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.5.0"
+  },
+>>>>>>> 14968157205b7cf05dbed5bbb74ac54f4a8f6f3a
   "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "npx nodemon ./src/index.js",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
