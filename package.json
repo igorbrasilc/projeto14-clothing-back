@@ -12,11 +12,14 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.5.0"
   },
   "scripts": {
     "start": "node ./src/server.js",
-		"dev": "npx nodemon ./src/server.js",
+    "dev": "npx nodemon ./src/server.js",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
