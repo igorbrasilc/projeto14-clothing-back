@@ -15,6 +15,8 @@
     
   },
   "scripts": {
+    "start": "node ./src/server.js",
+		"dev": "npx nodemon ./src/server.js",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
