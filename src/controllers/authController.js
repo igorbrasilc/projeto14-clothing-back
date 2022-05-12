@@ -4,13 +4,15 @@ import bcrypt from 'bcrypt';
 import db from '../db.js';
 
 export async function signUp(req, res) {
-    const { name, email, password } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
     const checkUser = await db.collection('users').findOne({ email });
     if (checkUser) {return res.status(409).send("User already exists");}
 
     const user = req.body;
+
     delete user.password;
+    delete user.confirmPassword;
 
     try{
         await db.collection("users").insertOne({...user, password: await bcrypt.hash(password, 10)});
