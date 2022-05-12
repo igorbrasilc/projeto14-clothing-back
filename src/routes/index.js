@@ -1,10 +1,9 @@
 import { Router } from 'express';
 
+import authRouter from './authRouter.js';
+
 const router = Router();
 
-//apagar, teste do servidor
-router.get('/', (req, res) => {
-    res.send("Hello World");
-});
+router.use(authRouter);
 
 export default router;
