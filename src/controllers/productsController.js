@@ -5,13 +5,13 @@ export async function getAllProducts(req, res) {
     try {
         const products = await db.collection('productsDb').find({}).toArray();
 
-        if (!products) return res.sendStatus(500);
+        if (!products) return res.status(500).send('Error getting products');
 
         res.status(200).send(products);
 
     } catch (e) {
         console.log('Erro no getAllProducts', e);
-        res.status(404).send("Categorie not found");
+        res.status(404).send("Error accessing database");
     }
 }
 
