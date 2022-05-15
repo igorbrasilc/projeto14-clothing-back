@@ -4,11 +4,9 @@ import { signUpSchema, signInSchema } from '../schemas/authSchemas.js';
 
 export async function validateToken(req, res, next) {
     const { authorization } = req.headers;
-
     const token = authorization?.replace('Bearer ', '').trim();
     const secretKey = process.env.JWT_SECRET;
     
-
     if (!token) {
         return res.status(401).send("Unauthorized");
     }
@@ -26,12 +24,12 @@ export async function validateToken(req, res, next) {
 
 export function signInValidation(req, res, next) {
     const { error } = signInSchema.validate(req.body);
-    if (error) { res.sendStatus(422); }
+    if (error) { return res.status(422).send(error); }
     next();
 }
 
 export function signUpValidation(req, res, next) {
     const { error } = signUpSchema.validate(req.body);
-    if (error) { res.sendStatus(422); }
+    if (error) { return res.status(422).send(error); }
     next();
 }

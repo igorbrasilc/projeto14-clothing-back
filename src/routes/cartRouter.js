@@ -10,7 +10,7 @@ cartRouter.use(validateToken);
 
 cartRouter.get("/cart", getUserCart);
 cartRouter.post("/add-to-cart", verifyProduct, postCart);
-cartRouter.delete("/remove-from-cart", verifyProductId, deleteCart);
+cartRouter.delete("/remove-from-cart/:productId", deleteCart);
 cartRouter.put("/edit-cart", verifyProduct, editCart);
 
 export default cartRouter;

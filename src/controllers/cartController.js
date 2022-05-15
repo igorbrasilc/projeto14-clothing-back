@@ -45,8 +45,8 @@ export async function postCart(req, res) {
 // delete item from cart
 export async function deleteCart(req, res) {
     const { user } = JSON.parse(JSON.stringify(res.locals));
-    const { productId } = req.body;
-
+    const { productId } = req.params;
+  
     try {
         const userCart = await db.collection("users").findOne({ _id: ObjectId(user.id) });
         if (!userCart.cart) {
@@ -55,7 +55,7 @@ export async function deleteCart(req, res) {
 
         // Increase item on database
         const quantity = userCart.cart.filter(item => item.productId === productId);
-        await db.collection("productsDb").updateOne({ _id: ObjectId(productId) }, { $inc: { stock: quantity[0].quantity } });
+        await db.collection("productsDb").updateOne({ _id: ObjectId(productId) }, { $inc: { stock: parseFloat(quantity[0].quantity) } });
         
         // Remove item from cart
         userCart.cart = userCart.cart.filter(item => item.productId !== productId);
