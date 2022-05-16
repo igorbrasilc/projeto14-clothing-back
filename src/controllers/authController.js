@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import {ObjectId} from 'mongodb';
 
 import db from '../db.js';
 
@@ -31,10 +32,10 @@ export async function signIn(req, res) {
         if (!user) {return res.status(404).send("User not found");}
 
         if(user && bcrypt.compare(password, user.password)) {
-            const data = {name: user.name, email: user.email, id: user._id};
+            const data = {name: user.name, email: user.email, id: new ObjectId(user._id)};
             const token = jwt.sign(data, secretKey);
             
-            await db.collection("sessions").insertOne({token, userId: user._id});
+            await db.collection("sessions").insertOne({token, userId: new ObjectId(user._id)});
             res.send({user, token});
         } else{
             res.status(404).send("User not found");

@@ -18,6 +18,13 @@ export async function getUserCart(req, res) {
 export async function postCart(req, res) {
     const { user } = JSON.parse(JSON.stringify(res.locals));
     const { productId, quantity } = req.body;
+
+    // console.log(
+    //   'body' , req.body
+    // );
+    // console.log(
+    //   'user' , user
+    // );
     
     try {
         const product = await db.collection("productsDb").findOne({ _id: ObjectId(productId) });
@@ -25,7 +32,16 @@ export async function postCart(req, res) {
             return res.status(404).send("Product not found");
         }
 
+        console.log(
+          'product' , product
+        );
+
         const userCart = await db.collection("users").findOne({ _id: ObjectId(user.id) });
+
+        // console.log(
+        //   'user ' , userCart
+        // );
+
         if (!userCart.cart) {
             userCart.cart = [];
         }
